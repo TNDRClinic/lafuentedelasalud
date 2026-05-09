@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Fuente de la Salud — PDF</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:    #FAF5F6;
+      --rose-lt:  #F2D4D7;
+      --rose-md:  #E8A0B0;
+      --mauve:    #9B72AA;
+      --purple:   #6B3FA0;
+      --taupe:    #7A6B72;
+      --white:    #FEFCFD;
+      --text:     #3A2E33;
+      --text-lt:  #6B5D63;
+      --font-title: 'Pinyon Script', cursive;
+      --font-body:  'Raleway', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: #fff;
+      color: var(--text);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Each .page is one PDF page */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 14mm 16mm;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      break-after: page;
+      page-break-after: always;
+    }
+    .page:last-child {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+      body { margin: 0; }
+      .page {
+        margin: 0;
+        width: 210mm;
+        min-height: 297mm;
+      }
+    }
+
+    /* ── Typography helpers ── */
+    .script { font-family: var(--font-title); }
+    .section-label {
+      font-family: var(--font-title);
+      font-size: 44pt;
+      color: var(--purple);
+      line-height: 1.1;
+      display: block;
+      margin-bottom: 8pt;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--rose-lt);
+      color: var(--purple);
+      font-size: 8pt; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 4pt 10pt; border-radius: 100pt;
+    }
+    .btn-print {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 700; font-size: 10pt;
+      letter-spacing: .04em;
+      padding: 8pt 20pt; border-radius: 100pt;
+    }
+    .btn-purple { background: var(--purple); color: #fff; }
+    .btn-outline { border: 2pt solid var(--purple); color: var(--purple); }
+    .btn-green { background: #25D366; color: #fff; }
+
+    /* ── PAGE 1: HERO ── */
+    .hero-page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+      min-height: 297mm;
+    }
+    .hero-left {
+      padding: 16mm 10mm 16mm 16mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--cream);
+    }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--cream) 0%, transparent 20%);
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 5pt;
+      background: var(--rose-lt); color: var(--purple);
+      font-size: 8pt; font-weight: 700; letter-spacing: .06em;
+      padding: 5pt 12pt; border-radius: 100pt;
+      margin-bottom: 18pt; text-transform: uppercase;
+      width: fit-content;
+    }
+    .hero-left h1 {
+      font-family: var(--font-title);
+      font-size: 30pt; color: var(--purple);
+      line-height: 1.2; margin-bottom: 14pt;
+      font-weight: 400;
+    }
+    .hero-left p {
+      font-size: 10pt; color: var(--text-lt);
+      line-height: 1.75; margin-bottom: 10pt;
+    }
+    .hero-left p.hero-hook {
+      font-style: italic; color: var(--taupe);
+      font-size: 9.5pt;
+    }
+    .hero-buttons {
+      display: flex; gap: 8pt; flex-wrap: wrap;
+      margin-top: 18pt;
+    }
+    .hero-logo {
+      display: flex; align-items: center; gap: 8pt;
+      margin-bottom: 28pt;
+    }
+    .hero-logo svg { width: 32pt; height: 32pt; }
+    .hero-logo span {
+      font-family: var(--font-title);
+      font-size: 20pt; color: var(--purple);
+    }
+
+    /* ── PAGE 2: SERVICIOS ── */
+    .servicios-page { background: var(--white); }
+    .page-header { text-align: center; margin-bottom: 24pt; }
+    .page-header .section-label { font-size: 40pt; }
+    .page-header p { font-size: 10pt; color: var(--text-lt); }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14pt;
+    }
+    .card {
+      background: var(--cream);
+      border-radius: 10pt;
+      overflow: hidden;
+    }
+    .card-img {
+      width: 100%; height: 110pt;
+      object-fit: cover; display: block;
+    }
+    .card-body { padding: 12pt; }
+    .card-body h3 {
+      font-family: var(--font-title);
+      font-size: 20pt; color: var(--purple);
+      font-weight: 400; margin-bottom: 7pt; line-height: 1.2;
+    }
+    .card-body p {
+      font-size: 8.5pt; color: var(--text-lt);
+      line-height: 1.65;
+    }
+    .card-tag {
+      display: inline-block; margin-top: 10pt;
+      background: var(--rose-lt); color: var(--purple);
+      font-size: 7pt; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 3pt 9pt; border-radius: 100pt;
+    }
+
+    /* ── PAGE 3: CÓMO TRABAJO ── */
+    .como-page { background: var(--purple); }
+    .como-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20mm;
+      align-items: center;
+      height: 100%;
+      min-height: 260mm;
+    }
+    .como-text h2 {
+      font-family: var(--font-title);
+      font-size: 42pt; color: #fff;
+      font-weight: 400; line-height: 1.1; margin-bottom: 14pt;
+    }
+    .como-text > p {
+      font-size: 10pt; color: rgba(255,255,255,0.82);
+      line-height: 1.75; margin-bottom: 24pt;
+    }
+    .pillar {
+      display: flex; align-items: flex-start; gap: 9pt;
+      margin-bottom: 12pt;
+    }
+    .pillar-dot {
+      width: 7pt; height: 7pt; border-radius: 50%;
+      background: var(--rose-md); flex-shrink: 0; margin-top: 4pt;
+    }
+    .pillar p { font-size: 9.5pt; color: rgba(255,255,255,0.85); line-height: 1.55; }
+    .pillar strong { color: #fff; }
+    .como-image {
+      border-radius: 10pt; overflow: hidden;
+      height: 200mm;
+    }
+    .como-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── PAGE 4: SOBRE MÍ ── */
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20mm;
+      align-items: center;
+      min-height: 260mm;
+    }
+    .sobre-image-wrap { position: relative; }
+    .sobre-image-main {
+      width: 100%; height: 200mm;
+      object-fit: cover; border-radius: 10pt; display: block;
+    }
+    .sobre-badge {
+      position: absolute; bottom: -8pt; right: -8pt;
+      background: var(--rose-lt);
+      border-radius: 10pt;
+      padding: 12pt 16pt;
+      border: 2pt solid var(--white);
+    }
+    .sobre-badge p {
+      font-family: var(--font-title);
+      font-size: 18pt; color: var(--purple); line-height: 1;
+    }
+    .sobre-badge span {
+      font-size: 7.5pt; color: var(--taupe);
+      font-weight: 600; letter-spacing: .04em;
+      display: block; margin-top: 3pt;
+    }
+    .sobre-text h2 {
+      font-family: var(--font-title);
+      font-size: 40pt; color: var(--purple);
+      font-weight: 400; line-height: 1.1; margin-bottom: 4pt;
+    }
+    .sobre-name {
+      font-family: var(--font-title);
+      font-size: 28pt; color: var(--mauve);
+      display: block; margin-bottom: 18pt;
+    }
+    .sobre-text p {
+      font-size: 10pt; color: var(--text-lt);
+      line-height: 1.8; margin-bottom: 12pt;
+    }
+    .cred-pills { display: flex; gap: 7pt; flex-wrap: wrap; margin-top: 18pt; }
+    .cred-pill {
+      background: var(--white);
+      border: 1.5pt solid var(--rose-lt);
+      color: var(--purple);
+      font-size: 8pt; font-weight: 700;
+      letter-spacing: .04em;
+      padding: 5pt 11pt; border-radius: 100pt;
+    }
+
+    /* ── PAGE 5: CONTACTO + FOOTER ── */
+    .contacto-page {
+      background: linear-gradient(135deg, var(--rose-lt) 0%, #EDD5E4 50%, var(--cream) 100%);
+    }
+    .contacto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20mm;
+      margin-bottom: 18pt;
+    }
+    .contacto-left h2 {
+      font-family: var(--font-title);
+      font-size: 44pt; color: var(--purple);
+      font-weight: 400; line-height: 1.1; margin-bottom: 12pt;
+    }
+    .contacto-left > p {
+      font-size: 10pt; color: var(--text-lt);
+      line-height: 1.75; margin-bottom: 18pt;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 9pt;
+      font-size: 10pt; font-weight: 600; color: var(--text);
+      margin-bottom: 10pt;
+    }
+    .info-dot {
+      width: 26pt; height: 26pt;
+      background: var(--white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13pt; flex-shrink: 0;
+    }
+    .contact-form {
+      background: var(--white);
+      border-radius: 10pt;
+      padding: 20pt;
+    }
+    .contact-form h3 {
+      font-family: var(--font-title);
+      font-size: 24pt; color: var(--purple);
+      font-weight: 400; margin-bottom: 14pt;
+    }
+    .form-field {
+      margin-bottom: 10pt;
+    }
+    .form-field label {
+      display: block;
+      font-size: 7.5pt; font-weight: 700; letter-spacing: .05em;
+      color: var(--taupe); text-transform: uppercase; margin-bottom: 4pt;
+    }
+    .form-field .field-box {
+      width: 100%;
+      background: var(--cream);
+      border: 1pt solid var(--rose-lt);
+      border-radius: 6pt;
+      padding: 8pt 10pt;
+      font-size: 9pt; color: var(--text-lt);
+      font-family: var(--font-body);
+    }
+    .field-box.tall { height: 44pt; }
+
+    /* Footer strip */
+    .footer-strip {
+      background: var(--text);
+      margin: 0 -16mm -14mm;
+      padding: 14pt 16mm 14pt;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-strip .logo-text {
+      font-family: var(--font-title);
+      font-size: 20pt; color: #fff;
+    }
+    .footer-strip p {
+      font-size: 8pt; color: rgba(255,255,255,0.55);
+    }
+    .footer-links { display: flex; gap: 14pt; }
+    .footer-links a {
+      font-size: 8pt; color: rgba(255,255,255,0.5); text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ PAGE 1: HERO ══════════════════════════════════════ -->
+  <div class="page hero-page">
+    <div class="hero-left">
+      <div class="hero-logo">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="21" stroke="#9B72AA" stroke-width="1.5" fill="rgba(242,212,215,0.3)"/>
+          <line x1="22" y1="34" x2="22" y2="18" stroke="#6B3FA0" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M22 26 C18 22 13 22 13 17 C18 17 22 22 22 26Z" fill="#9B72AA" opacity="0.9"/>
+          <path d="M22 23 C26 19 31 20 31 15 C26 15 22 19 22 23Z" fill="#6B3FA0" opacity="0.8"/>
+          <path d="M22 21 C22 16 19 12 22 10 C25 12 22 16 22 21Z" fill="#9B72AA" opacity="0.7"/>
+          <ellipse cx="22" cy="35.5" rx="2.5" ry="1.5" fill="#E8A0B0" opacity="0.6"/>
+        </svg>
+        <span>La Fuente de la Salud</span>
+      </div>
+
+      <div class="hero-eyebrow">📍 Consulta presencial en Bilbao centro</div>
+
+      <h1>Nutricionista integrativa y terapias energéticas en Bilbao centro</h1>
+
+      <p>Acompaño a mujeres en Bilbao a mejorar su digestión, su energía y su bienestar emocional desde un enfoque consciente, corporal y energético.</p>
+
+      <p class="hero-hook">Si vives en Bilbao y sientes que algo no está en equilibrio… Si tu cuerpo habla a través de molestias digestivas, cansancio o ansiedad… Estás en el lugar adecuado.</p>
+
+      <div class="hero-buttons">
+        <span class="btn-print btn-purple">Reserva tu sesión en Bilbao</span>
+        <span class="btn-print btn-outline">Escríbeme por WhatsApp</span>
+      </div>
+
+      <p style="margin-top:24pt; font-size:9pt; color:var(--taupe);">📞 608 526 690 &nbsp;·&nbsp; lafuentedelasalud.com</p>
+    </div>
+    <div class="hero-right">
+      <img src="uploads/IMG_9729.jpg" alt="Iratxe, nutricionista integrativa en Bilbao" />
+    </div>
+  </div>
+
+  <!-- ══ PAGE 2: SERVICIOS ════════════════════════════════ -->
+  <div class="page servicios-page">
+    <div class="page-header">
+      <span class="section-label">Cómo puedo acompañarte</span>
+      <p>Tres caminos, un mismo propósito: que recuperes tu equilibrio desde dentro.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <img class="card-img" src="uploads/IMG-20231008-WA0050.jpg" alt="Nutrición consciente en Bilbao" />
+        <div class="card-body">
+          <h3>Nutrición consciente en Bilbao</h3>
+          <p>Acompañamiento nutricional enfocado en la digestión, la relación con la comida y el bienestar emocional. Ideal si buscas nutricionista en Bilbao para digestiones pesadas, hinchazón abdominal o ansiedad con la comida.</p>
+          <span class="card-tag">Nutrición integrativa</span>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img" src="uploads/Copia de ESPALDA IRATXE (10).jpg" alt="Masaje terapéutico en Bilbao centro" />
+        <div class="card-body">
+          <h3>Masaje terapéutico en Bilbao centro</h3>
+          <p>Sesiones de masaje en el centro de Bilbao para liberar tensión física y emocional. Ideal si buscas un masaje en Bilbao que vaya más allá de lo físico, tienes estrés o necesitas reconectar con tu cuerpo.</p>
+          <span class="card-tag">Masaje terapéutico</span>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img" src="uploads/Copia de ESPALDA IRATXE (9).jpg" alt="Terapia energética en Bilbao" />
+        <div class="card-body">
+          <h3>Terapia energética en Bilbao</h3>
+          <p>Trabajo energético para desbloquear lo que no se ve, pero se siente. Ideal si te sientes bloqueada, repites patrones o buscas un acompañamiento más profundo en el centro de Bilbao.</p>
+          <span class="card-tag">Energía &amp; bienestar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 3: CÓMO TRABAJO ════════════════════════════ -->
+  <div class="page como-page">
+    <div class="como-inner">
+      <div class="como-text">
+        <h2>Mi forma de acompañar</h2>
+        <p>Mi forma de acompañar en Bilbao no es invasiva. Trabajo desde la escucha del cuerpo, la emoción y la energía, adaptando cada sesión a lo que necesitas en ese momento. Cada proceso es único.</p>
+        <div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <p><strong>Escucha del cuerpo</strong> — Porque el cuerpo siempre sabe antes que la mente.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <p><strong>Integración emocional</strong> — Lo que sentimos afecta directamente a lo que digerimos.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <p><strong>Enfoque energético</strong> — Más allá de lo visible, trabajamos lo que bloquea tu flujo vital.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-dot"></div>
+            <p><strong>Proceso único</strong> — Cada mujer que llega a la consulta en Bilbao trae su propio camino.</p>
+          </div>
+        </div>
+      </div>
+      <div class="como-image">
+        <img src="uploads/AUTOMASAJE CG (9).jpg" alt="Sesión de terapia integrativa en Bilbao" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 4: SOBRE MÍ ════════════════════════════════ -->
+  <div class="page">
+    <div class="sobre-inner">
+      <div class="sobre-image-wrap">
+        <img class="sobre-image-main" src="uploads/IMG_9749.jpg" alt="Iratxe, nutricionista y terapeuta en Bilbao" />
+        <div class="sobre-badge">
+          <p>Iratxe</p>
+          <span>Nutricionista · Terapeuta · Bilbao</span>
+        </div>
+      </div>
+      <div class="sobre-text">
+        <h2>Sobre mí</h2>
+        <span class="sobre-name">Soy Iratxe</span>
+        <p>Nutricionista integrativa y terapeuta en Bilbao. Durante años entendí el cuerpo desde lo físico… hasta que descubrí que muchas molestias digestivas, emocionales y energéticas estaban profundamente conectadas.</p>
+        <p>Hoy acompaño a mujeres en Bilbao que quieren mejorar su relación con la comida, aliviar su malestar digestivo y recuperar su equilibrio desde un enfoque más consciente y humano.</p>
+        <p>Mi consulta en el centro de Bilbao es un espacio seguro donde el cuerpo, la emoción y la energía tienen cabida por igual.</p>
+        <div class="cred-pills">
+          <span class="cred-pill">Nutrición integrativa</span>
+          <span class="cred-pill">Masaje terapéutico</span>
+          <span class="cred-pill">Terapia energética</span>
+          <span class="cred-pill">Bilbao centro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PAGE 5: CONTACTO ════════════════════════════════ -->
+  <div class="page contacto-page">
+    <div class="contacto-inner">
+      <div class="contacto-left">
+        <h2>¿Es tu momento?</h2>
+        <p>Si estás en Bilbao y sientes que es tu momento, puedes escribirme o reservar tu sesión. Estoy aquí para escucharte.</p>
+        <div class="info-item">
+          <div class="info-dot">📍</div>
+          <span>Consulta presencial en Bilbao centro</span>
+        </div>
+        <div class="info-item">
+          <div class="info-dot">📞</div>
+          <span>608 526 690</span>
+        </div>
+        <div style="margin-top:20pt;">
+          <span class="btn-print btn-green" style="display:inline-block; font-size:10pt; padding:10pt 22pt;">Escríbeme por WhatsApp</span>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Escríbeme</h3>
+        <div class="form-field">
+          <label>Nombre</label>
+          <div class="field-box">Tu nombre</div>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <div class="field-box">tu@email.com</div>
+        </div>
+        <div class="form-field">
+          <label>Mensaje</label>
+          <div class="field-box tall">Cuéntame cómo puedo ayudarte...</div>
+        </div>
+        <div style="margin-top:12pt;">
+          <span class="btn-print btn-purple" style="display:block; text-align:center; padding:10pt;">Enviar mensaje</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer strip -->
+    <div class="footer-strip">
+      <span class="logo-text">La Fuente de la Salud</span>
+      <p>Consulta presencial en Bilbao centro · 📞 608 526 690</p>
+      <div class="footer-links">
+        <a href="#">Aviso legal</a>
+        <a href="#">Privacidad</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      setTimeout(() => { window.print(); }, 500);
+    });
+  </script>
+</body>
+</html>

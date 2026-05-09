@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Expand-Archive -Path \"Iratxe-handoff.zip\" -DestinationPath \".\" -Force)",
+      "Read(//mnt/c/Users/jesskalada/Documents/TNDR/**)",
+      "Bash(unzip -o \"Iratxe-handoff.zip\")",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\jesskalada\\\\Documents\\\\TNDR\\\\Iratxe\" | ForEach-Object { $_.FullName })",
+      "PowerShell(Copy-Item -Path \"C:\\\\Users\\\\jesskalada\\\\Documents\\\\TNDR\\\\Iratxe\\\\iratxe\\\\project\\\\uploads\" -Destination \"C:\\\\Users\\\\jesskalada\\\\Documents\\\\TNDR\\\\Iratxe\\\\uploads\" -Recurse -Force)"
+    ]
+  }
+}

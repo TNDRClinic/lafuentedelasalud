@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Fuente de la Salud | Nutricionista integrativa y terapias energéticas en Bilbao centro</title>
+  <meta name="description" content="Consulta de nutrición integrativa, masaje terapéutico y terapia energética en el centro de Bilbao. Acompaño a mujeres a mejorar su digestión, energía y bienestar emocional." />
+  <meta name="keywords" content="nutricionista Bilbao, terapias energéticas Bilbao, masaje Bilbao centro, nutrición integrativa Bilbao, bienestar Bilbao" />
+  <meta property="og:title" content="La Fuente de la Salud | Nutricionista integrativa en Bilbao" />
+  <meta property="og:description" content="Consulta de nutrición integrativa, masaje terapéutico y terapia energética en el centro de Bilbao." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --cream:    #FAF5F6;
+      --rose-lt:  #F2D4D7;
+      --rose-md:  #E8A0B0;
+      --mauve:    #9B72AA;
+      --purple:   #6B3FA0;
+      --taupe:    #7A6B72;
+      --white:    #FEFCFD;
+      --text:     #3A2E33;
+      --text-lt:  #6B5D63;
+
+      --font-title: 'Pinyon Script', cursive;
+      --font-body:  'Raleway', sans-serif;
+
+      --radius: 18px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 32px rgba(107,63,160,0.08);
+      --shadow-md: 0 8px 48px rgba(107,63,160,0.13);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── HELPERS ─────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+    .script { font-family: var(--font-title); }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--rose-lt); color: var(--purple);
+      font-size: 13px; font-weight: 600; letter-spacing: .04em;
+      padding: 6px 16px; border-radius: 100px;
+    }
+    .btn {
+      display: inline-block; font-family: var(--font-body);
+      font-weight: 600; font-size: 15px; letter-spacing: .03em;
+      padding: 14px 32px; border-radius: 100px;
+      text-decoration: none; cursor: pointer; transition: all .25s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--purple); color: #fff;
+    }
+    .btn-primary:hover { background: #5a339a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,63,160,0.3); }
+    .btn-outline {
+      background: transparent; color: var(--purple);
+      border: 2px solid var(--purple);
+    }
+    .btn-outline:hover { background: var(--rose-lt); transform: translateY(-2px); }
+    .btn-whatsapp {
+      background: #25D366; color: #fff;
+    }
+    .btn-whatsapp:hover { background: #1fb958; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+
+    .section-label {
+      display: block;
+      font-family: var(--font-title);
+      font-size: 52px;
+      color: var(--purple);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px; color: var(--text-lt);
+      font-weight: 400; max-width: 560px; line-height: 1.75;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(250,245,246,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,160,176,0.25);
+      transition: box-shadow .3s;
+    }
+    #navbar.scrolled { box-shadow: 0 2px 24px rgba(107,63,160,0.08); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+    }
+    .nav-logo-text {
+      font-family: var(--font-title);
+      font-size: 26px; color: var(--purple);
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; letter-spacing: .04em;
+      color: var(--taupe); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--purple); }
+    .nav-links .nav-cta .btn { padding: 10px 24px; font-size: 14px; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #hero {
+      padding-top: 72px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .hero-content {
+      padding: 80px 48px 80px 0;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--rose-lt); color: var(--purple);
+      font-size: 13px; font-weight: 600; letter-spacing: .06em;
+      padding: 7px 18px; border-radius: 100px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+    .hero-content h1 {
+      font-family: var(--font-title);
+      font-size: clamp(38px, 4vw, 56px);
+      color: var(--purple);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    .hero-content p {
+      font-size: 17px; color: var(--text-lt);
+      line-height: 1.8; margin-bottom: 18px;
+      max-width: 480px;
+    }
+    .hero-content p.hero-hook {
+      font-style: italic; color: var(--taupe);
+      font-size: 15.5px;
+    }
+    .hero-buttons {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-top: 36px;
+    }
+    .hero-image {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--cream) 0%, transparent 18%);
+      z-index: 1;
+    }
+    .hero-decor {
+      position: absolute; bottom: 48px; left: -24px; z-index: 2;
+      background: rgba(250,245,246,0.9);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--rose-lt);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero-decor p {
+      font-family: var(--font-title);
+      font-size: 22px; color: var(--purple);
+      line-height: 1;
+    }
+    .hero-decor span {
+      font-family: var(--font-body);
+      font-size: 12px; color: var(--taupe);
+      font-weight: 500; letter-spacing: .05em;
+      display: block; margin-top: 4px;
+    }
+
+    /* ── SERVICIOS ─────────────────────────────────────── */
+    #servicios {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .servicios-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .servicios-header .section-sub {
+      margin: 0 auto;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .card-img {
+      width: 100%; height: 240px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 28px 28px 32px;
+    }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: var(--rose-lt);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .card-icon svg { width: 20px; height: 20px; }
+    .card-body h3 {
+      font-family: var(--font-title);
+      font-size: 28px; color: var(--purple);
+      font-weight: 400; margin-bottom: 12px; line-height: 1.2;
+    }
+    .card-body p {
+      font-size: 14.5px; color: var(--text-lt);
+      line-height: 1.75;
+    }
+    .card-tag {
+      display: inline-block;
+      margin-top: 18px;
+      background: var(--rose-lt);
+      color: var(--purple);
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+    }
+
+    /* ── CÓMO TRABAJO ──────────────────────────────────── */
+    #como-trabajo {
+      padding: 100px 0;
+      background: var(--purple);
+      position: relative;
+      overflow: hidden;
+    }
+    #como-trabajo::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    #como-trabajo::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .como-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .como-text h2 {
+      font-family: var(--font-title);
+      font-size: 54px; color: #fff;
+      font-weight: 400; line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .como-text p {
+      font-size: 17px; color: rgba(255,255,255,0.8);
+      line-height: 1.85; margin-bottom: 36px;
+    }
+    .como-pillars {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .pillar {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .pillar-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--rose-md);
+      flex-shrink: 0; margin-top: 7px;
+    }
+    .pillar p {
+      font-size: 15px; color: rgba(255,255,255,0.85);
+      line-height: 1.6; margin: 0;
+    }
+    .pillar strong { color: #fff; }
+    .como-image {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 480px;
+      box-shadow: var(--shadow-md);
+    }
+    .como-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── SOBRE MÍ ──────────────────────────────────────── */
+    #sobre-mi {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .sobre-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .sobre-image-wrap {
+      position: relative;
+    }
+    .sobre-image-main {
+      width: 100%;
+      border-radius: var(--radius);
+      object-fit: cover;
+      height: 560px;
+      display: block;
+      box-shadow: var(--shadow-md);
+    }
+    .sobre-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--rose-lt);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      border: 3px solid var(--white);
+    }
+    .sobre-badge p {
+      font-family: var(--font-title);
+      font-size: 24px; color: var(--purple);
+      line-height: 1;
+    }
+    .sobre-badge span {
+      font-size: 12px; color: var(--taupe);
+      font-weight: 600; letter-spacing: .05em;
+      display: block; margin-top: 4px;
+    }
+    .sobre-text h2 {
+      font-family: var(--font-title);
+      font-size: 52px; color: var(--purple);
+      font-weight: 400; line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .sobre-name {
+      font-family: var(--font-title);
+      font-size: 38px; color: var(--mauve);
+      font-weight: 400; display: block;
+      margin-bottom: 28px;
+    }
+    .sobre-text p {
+      font-size: 16px; color: var(--text-lt);
+      line-height: 1.85; margin-bottom: 20px;
+    }
+    .sobre-text p:first-of-type { color: var(--text); }
+    .sobre-credentials {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .cred-pill {
+      background: var(--white);
+      border: 1.5px solid var(--rose-lt);
+      color: var(--purple);
+      font-size: 12.5px; font-weight: 600;
+      letter-spacing: .04em;
+      padding: 7px 16px; border-radius: 100px;
+    }
+
+    /* ── CONTACTO ──────────────────────────────────────── */
+    #contacto {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--rose-lt) 0%, #EDD5E4 50%, var(--cream) 100%);
+    }
+    .contacto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contacto-left h2 {
+      font-family: var(--font-title);
+      font-size: 58px; color: var(--purple);
+      font-weight: 400; line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .contacto-left p {
+      font-size: 17px; color: var(--text-lt);
+      line-height: 1.8; margin-bottom: 36px;
+    }
+    .contacto-info {
+      display: flex; flex-direction: column; gap: 14px;
+      margin-bottom: 36px;
+    }
+    .info-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 15px; font-weight: 500; color: var(--text);
+    }
+    .info-dot {
+      width: 36px; height: 36px;
+      background: var(--white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(107,63,160,0.1);
+      font-size: 16px;
+    }
+    .contact-form {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+    .contact-form h3 {
+      font-family: var(--font-title);
+      font-size: 30px; color: var(--purple);
+      font-weight: 400; margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px; font-weight: 600; letter-spacing: .04em;
+      color: var(--taupe); text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 15px;
+      background: var(--cream);
+      border: 1.5px solid var(--rose-lt);
+      border-radius: var(--radius-sm);
+      padding: 13px 16px;
+      color: var(--text);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--mauve);
+      box-shadow: 0 0 0 3px rgba(155,114,170,0.15);
+    }
+    .form-group textarea { height: 120px; }
+    .form-submit { width: 100%; text-align: center; font-size: 16px; padding: 16px; }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.7);
+      padding: 56px 0 32px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo-text {
+      color: #fff; font-size: 30px;
+      display: block; margin-bottom: 12px;
+    }
+    .footer-brand p {
+      font-size: 14px; line-height: 1.7;
+      color: rgba(255,255,255,0.55);
+    }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-size: 14px; color: rgba(255,255,255,0.65);
+      text-decoration: none; transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--rose-md); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--rose-md); }
+
+    /* ── SCROLL ANIMATIONS ──────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ── ¿TE SIENTES IDENTIFICADA? ─────────────────────── */
+    #identificada {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .identificada-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .identificada-header .section-sub { margin: 0 auto; }
+    .identificada-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .identificada-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 36px 28px 40px;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .identificada-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+    .ident-icon {
+      font-size: 38px; line-height: 1;
+      margin-bottom: 20px;
+    }
+    .identificada-card h3 {
+      font-family: var(--font-title);
+      font-size: 28px; color: var(--purple);
+      font-weight: 400; line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .identificada-card p {
+      font-size: 15px; color: var(--text-lt);
+      line-height: 1.8; margin-bottom: 28px;
+      flex-grow: 1;
+    }
+    .identificada-card .btn { align-self: flex-start; font-size: 13.5px; padding: 10px 22px; }
+
+    /* ── UN ESPACIO PARA TI ──────────────────────────────── */
+    #espacio {
+      padding: 100px 0;
+      background: var(--purple);
+      position: relative; overflow: hidden;
+    }
+    #espacio::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    #espacio::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -40px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+    }
+    .espacio-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .espacio-text h2 {
+      font-family: var(--font-title);
+      font-size: 54px; color: #fff;
+      font-weight: 400; line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .espacio-text p {
+      font-size: 17px; color: rgba(255,255,255,0.82);
+      line-height: 1.85;
+    }
+    .espacio-info {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .espacio-info-item {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .espacio-info-dot {
+      width: 42px; height: 42px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .espacio-info-item p {
+      font-size: 15px; color: rgba(255,255,255,0.85);
+      font-weight: 500; line-height: 1.55;
+      margin: 0; padding-top: 9px;
+    }
+    .espacio-info-item p span {
+      display: block;
+      font-size: 13px; font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+    }
+    .espacio-left { display: flex; flex-direction: column; gap: 40px; }
+    .espacio-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 480px;
+      box-shadow: var(--shadow-md);
+    }
+    .espacio-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 960px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-content { padding: 40px 0 0; }
+      .hero-image { height: 60vw; }
+      .cards-grid,
+      .identificada-grid { grid-template-columns: 1fr; }
+      .como-inner,
+      .sobre-inner,
+      .contacto-inner,
+      .espacio-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ────────────────────────────────────────── -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <svg class="nav-logo-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="21" stroke="#9B72AA" stroke-width="1.5" fill="rgba(242,212,215,0.3)"/>
+            <line x1="22" y1="34" x2="22" y2="18" stroke="#6B3FA0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M22 26 C18 22 13 22 13 17 C18 17 22 22 22 26Z" fill="#9B72AA" opacity="0.9"/>
+            <path d="M22 23 C26 19 31 20 31 15 C26 15 22 19 22 23Z" fill="#6B3FA0" opacity="0.8"/>
+            <path d="M22 21 C22 16 19 12 22 10 C25 12 22 16 22 21Z" fill="#9B72AA" opacity="0.7"/>
+            <ellipse cx="22" cy="35.5" rx="2.5" ry="1.5" fill="#E8A0B0" opacity="0.6"/>
+          </svg>
+          <span class="nav-logo-text">La Fuente de la Salud</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li class="nav-cta"><a href="#contacto" class="btn btn-primary">Reservar</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="container" style="display:contents;">
+      <div class="hero-content" style="padding-left:max(32px, calc((100vw - 1160px)/2 + 32px));">
+        <div class="hero-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#6B3FA0" stroke-width="1.4"/><path d="M7 10 V6 M7 4.5V4" stroke="#6B3FA0" stroke-width="1.4" stroke-linecap="round"/></svg>
+          Consulta presencial en Bilbao centro
+        </div>
+
+        <h1>Nutricionista integrativa y terapias energéticas en Bilbao centro</h1>
+
+        <p>Acompaño a mujeres en Bilbao a mejorar su digestión, su energía y su bienestar emocional desde un enfoque consciente, corporal y energético.</p>
+
+        <p class="hero-hook">Si vives en Bilbao y sientes que algo no está en equilibrio… Si tu cuerpo habla a través de molestias digestivas, cansancio o ansiedad… Estás en el lugar adecuado.</p>
+
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn btn-primary">Reserva tu sesión en Bilbao</a>
+          <a href="https://wa.me/34641336977" class="btn btn-outline" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="uploads/IMG_9729.jpg" alt="Iratxe, nutricionista integrativa en Bilbao" />
+        <div class="hero-decor">
+          <p>Bilbao centro</p>
+          <span>Consulta presencial · Atención personalizada</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ¿TE SIENTES IDENTIFICADA? ───────────────────────── -->
+  <section id="identificada">
+    <div class="container">
+      <div class="identificada-header reveal">
+        <span class="section-label">¿Te sientes identificada con esto?</span>
+        <p class="section-sub">Quizá llevas tiempo normalizando sentirte mal. Estas son algunas de las señales más frecuentes con las que llegan las personas a consulta.</p>
+      </div>
+
+      <div class="identificada-grid">
+        <div class="identificada-card reveal reveal-delay-1">
+          <div class="ident-icon">🌱</div>
+          <h3>¿Sientes que todo te sienta mal?</h3>
+          <p>Hinchazón, gases, acidez, reflujo, pesadez… ¿Hay alimentos que ya evitas porque sabes que luego te encontrarás peor? La digestión no debería notarse. Y muchas veces el cuerpo habla a través del sistema digestivo.</p>
+          <a href="servicios.html#nutricion" class="btn btn-outline">Conoce la nutrición emocional</a>
+        </div>
+
+        <div class="identificada-card reveal reveal-delay-2">
+          <div class="ident-icon">🌊</div>
+          <h3>¿Sientes que acumulas demasiado?</h3>
+          <p>Quizá eres una persona muy sensible, te cuesta parar o notas que tu cuerpo acaba reflejando lo que llevas dentro. A veces el cuerpo expresa lo que las emociones no consiguen sacar.</p>
+          <a href="servicios.html#masaje" class="btn btn-outline">Descubre el masaje TNDR</a>
+        </div>
+
+        <div class="identificada-card reveal reveal-delay-3">
+          <div class="ident-icon">🌳</div>
+          <h3>¿Sientes que ciertos patrones se repiten en tu familia?</h3>
+          <p>A veces repetimos síntomas, dinámicas o formas de vivir que vienen de mucho más atrás. Comprender de dónde viene también puede ayudarte a entender lo que te pasa hoy.</p>
+          <a href="servicios.html#constelaciones" class="btn btn-outline">Explora las constelaciones familiares</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICIOS ─────────────────────────────────────── -->
+  <section id="servicios">
+    <div class="container">
+      <div class="servicios-header reveal">
+        <span class="section-label">Cómo puedo acompañarte</span>
+        <p class="section-sub">Tres caminos, un mismo propósito: que recuperes tu equilibrio desde dentro.</p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card reveal reveal-delay-1">
+          <img class="card-img" src="uploads/IMG-20231008-WA0050.jpg" alt="Nutrición consciente en Bilbao" />
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 3 C10 3 6 6 6 10 C6 13.3 7.8 16 10 17 C12.2 16 14 13.3 14 10 C14 6 10 3 10 3Z" stroke="#6B3FA0" stroke-width="1.4" stroke-linejoin="round" fill="rgba(107,63,160,0.08)"/>
+                <path d="M10 17 V19" stroke="#6B3FA0" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Nutrición emocional y alimentación sindrómica</h3>
+            <p>Cada cuerpo es único. Hay alimentos que equilibran a unas personas y sobrecargan a otras. No trabajo desde dietas rígidas, sino observando cómo te alimentas, cómo responde tu cuerpo y qué relación hay entre tus digestiones, tu energía y tus emociones.</p>
+            <span class="card-tag">Nutrición integrativa</span>
+            <div style="margin-top:20px;">
+              <a href="servicios.html#nutricion" class="btn btn-outline" style="font-size:13px; padding:9px 20px;">Conoce la nutrición emocional</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2">
+          <img class="card-img" src="uploads/Copia de ESPALDA IRATXE (10).jpg" alt="Masaje terapéutico en Bilbao centro" />
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 14 C5 10 8 7 12 7 C15 7 16 9 15 11 C14 13 11 14 9 13 C7 12 7 10 9 9" stroke="#6B3FA0" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+                <circle cx="15" cy="6" r="2" stroke="#6B3FA0" stroke-width="1.4" fill="rgba(107,63,160,0.08)"/>
+              </svg>
+            </div>
+            <h3>Masaje TNDR</h3>
+            <p>Una técnica manual que permite hacer una lectura corporal para observar qué está pasando en el cuerpo y acompañarlo a recuperar su equilibrio. No se trata solo de relajar, se trata de escuchar lo que el cuerpo lleva tiempo intentando decir.</p>
+            <span class="card-tag">Masaje terapéutico</span>
+            <div style="margin-top:20px;">
+              <a href="servicios.html#masaje" class="btn btn-outline" style="font-size:13px; padding:9px 20px;">Descubre el masaje TNDR</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-3">
+          <img class="card-img" src="uploads/Copia de ESPALDA IRATXE (9).jpg" alt="Terapia energética en Bilbao" />
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 2 L11.8 7.5 H17.5 L12.8 10.8 L14.6 16.3 L10 13 L5.4 16.3 L7.2 10.8 L2.5 7.5 H8.2 Z" stroke="#6B3FA0" stroke-width="1.3" stroke-linejoin="round" fill="rgba(107,63,160,0.08)"/>
+              </svg>
+            </div>
+            <h3>Constelaciones familiares</h3>
+            <p>A veces repetimos síntomas, dinámicas o formas de vivir que vienen de mucho más atrás. Las constelaciones nos ayudan a mirar nuestra historia y comprender cómo ciertos vínculos familiares pueden seguir influyendo en nuestra vida actual.</p>
+            <span class="card-tag">Energía &amp; bienestar</span>
+            <div style="margin-top:20px;">
+              <a href="servicios.html#constelaciones" class="btn btn-outline" style="font-size:13px; padding:9px 20px;">Explora las constelaciones familiares</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CÓMO TRABAJO ──────────────────────────────────── -->
+  <section id="como-trabajo">
+    <div class="container">
+      <div class="como-inner">
+        <div class="como-text reveal">
+          <h2>Mi forma de acompañar</h2>
+          <p>Mi forma de acompañar en Bilbao no es invasiva. Trabajo desde la escucha del cuerpo, la emoción y la energía, adaptando cada sesión a lo que necesitas en ese momento. Cada proceso es único.</p>
+          <div class="como-pillars">
+            <div class="pillar">
+              <div class="pillar-dot"></div>
+              <p><strong>Escucha del cuerpo</strong> — Porque el cuerpo siempre sabe antes que la mente.</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-dot"></div>
+              <p><strong>Integración emocional</strong> — Lo que sentimos afecta directamente a lo que digerimos.</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-dot"></div>
+              <p><strong>Enfoque energético</strong> — Más allá de lo visible, trabajamos lo que bloquea tu flujo vital.</p>
+            </div>
+            <div class="pillar">
+              <div class="pillar-dot"></div>
+              <p><strong>Proceso único</strong> — Cada mujer que llega a la consulta en Bilbao trae su propio camino.</p>
+            </div>
+          </div>
+        </div>
+        <div class="como-image reveal reveal-delay-2">
+          <img src="uploads/AUTOMASAJE CG (9).jpg" alt="Sesión de terapia integrativa en Bilbao" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOBRE MÍ ──────────────────────────────────────── -->
+  <section id="sobre-mi">
+    <div class="container">
+      <div class="sobre-inner">
+        <div class="sobre-image-wrap reveal">
+          <img class="sobre-image-main" src="uploads/IMG_9749.jpg" alt="Iratxe, nutricionista y terapeuta en Bilbao" />
+          <div class="sobre-badge">
+            <p>Iratxe</p>
+            <span>Nutricionista · Terapeuta · Bilbao</span>
+          </div>
+        </div>
+        <div class="sobre-text reveal reveal-delay-2">
+          <h2>Sobre mí</h2>
+          <span class="sobre-name">Soy Iratxe</span>
+          <p>Nutricionista integrativa y terapeuta en Bilbao. Durante años entendí el cuerpo desde lo físico… hasta que descubrí que muchas molestias digestivas, emocionales y energéticas estaban profundamente conectadas.</p>
+          <p>Hoy acompaño a mujeres en Bilbao que quieren mejorar su relación con la comida, aliviar su malestar digestivo y recuperar su equilibrio desde un enfoque más consciente y humano.</p>
+          <p>Mi consulta en el centro de Bilbao es un espacio seguro donde el cuerpo, la emoción y la energía tienen cabida por igual.</p>
+          <div class="sobre-credentials">
+            <span class="cred-pill">Nutrición integrativa</span>
+            <span class="cred-pill">Masaje terapéutico</span>
+            <span class="cred-pill">Terapia energética</span>
+            <span class="cred-pill">Bilbao centro</span>
+          </div>
+          <div style="margin-top:36px;">
+            <a href="sobre-mi.html" class="btn btn-primary">Conoce mi historia</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── UN ESPACIO PARA TI ───────────────────────────────── -->
+  <section id="espacio">
+    <div class="container">
+      <div class="espacio-inner">
+        <div class="espacio-left reveal">
+          <div class="espacio-text">
+            <h2>Un espacio para ti</h2>
+            <p>Te acompaño de forma presencial en Bilbao centro, en un espacio tranquilo y cuidado donde puedas parar, escucharte y sentirte acompañada. Cada proceso es único, por eso las sesiones son siempre personalizadas y adaptadas a lo que necesitas en este momento.</p>
+          </div>
+
+          <div class="espacio-info">
+          <div class="espacio-info-item">
+            <div class="espacio-info-dot">📍</div>
+            <p>Plaza Venezuela nº1, 5 drch, dpto 7
+              <span>Bilbao centro</span>
+            </p>
+          </div>
+          <div class="espacio-info-item">
+            <div class="espacio-info-dot">📞</div>
+            <p>641 336 977</p>
+          </div>
+          <div class="espacio-info-item">
+            <div class="espacio-info-dot">💌</div>
+            <p>Iratxe@lafuentedelasalud.com</p>
+          </div>
+          <div class="espacio-info-item">
+            <div class="espacio-info-dot">🚇</div>
+            <p>A solo 5 minutos de Abando
+              <span>Metro · Tranvía · Renfe · Autobús · Parking en Pío Baroja y Arenal</span>
+            </p>
+          </div>
+          </div><!-- /espacio-info -->
+        </div><!-- /espacio-left -->
+
+        <div class="espacio-image reveal reveal-delay-2">
+          <img src="uploads/bilbao-centro.jpeg" alt="Consulta La Fuente de la Salud — Bilbao centro" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACTO ──────────────────────────────────────── -->
+  <section id="contacto">
+    <div class="container">
+      <div class="contacto-inner">
+        <div class="contacto-left reveal">
+          <h2>¿Es tu momento?</h2>
+          <p>Quizá llevas demasiado tiempo normalizando sentirte mal. Tu cuerpo no está en tu contra, solo necesita ser escuchado. Escríbeme y empecemos juntas este proceso.</p>
+          <div class="contacto-info">
+            <div class="info-item">
+              <div class="info-dot">📍</div>
+              <span>Plaza Venezuela nº1, 5 drch, dpto 7, Bilbao centro</span>
+            </div>
+            <div class="info-item">
+              <div class="info-dot">📞</div>
+              <span>641 336 977</span>
+            </div>
+            <div class="info-item">
+              <div class="info-dot">✉️</div>
+              <span>Iratxe@lafuentedelasalud.com</span>
+            </div>
+            <div class="info-item">
+              <div class="info-dot">🚇</div>
+              <span>A 5 min de Abando · Metro, tranvía, Renfe y autobús · Parking en Pío Baroja y Arenal</span>
+            </div>
+          </div>
+          <a href="https://wa.me/34641336977" class="btn btn-whatsapp" target="_blank" rel="noopener" style="font-size:16px; padding:16px 36px; display:inline-flex; align-items:center; gap:10px;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 1C5.03 1 1 5.03 1 10c0 1.56.41 3.03 1.12 4.31L1 19l4.79-1.1A9 9 0 1010 1z" fill="white" opacity=".15"/><path d="M10 1C5.03 1 1 5.03 1 10c0 1.56.41 3.03 1.12 4.31L1 19l4.79-1.1A9 9 0 1010 1z" stroke="white" stroke-width="1.4"/><path d="M7.5 6.5s-.5 1 .5 2.5S10 11 11 11.5s1.5.5 2 0 .5-1 0-1.5-1.5-.5-1.5-.5-1.5-1-1.5-2.5" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Escríbeme por WhatsApp
+          </a>
+        </div>
+        <div class="contact-form reveal reveal-delay-2">
+          <h3>Escríbeme</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntame cómo puedo ayudarte..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="nav-logo-text script">La Fuente de la Salud</span>
+          <p>Consulta presencial en Bilbao centro. Nutrición integrativa, masaje terapéutico y terapia energética para mujeres que quieren recuperar su equilibrio.</p>
+          <p style="margin-top:12px;">📍 Plaza Venezuela nº1, Bilbao &nbsp;·&nbsp; 📞 641 336 977</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="servicios.html#nutricion">Nutrición emocional</a></li>
+            <li><a href="servicios.html#masaje">Masaje TNDR</a></li>
+            <li><a href="servicios.html#constelaciones">Constelaciones familiares</a></li>
+            <li><a href="#contacto">Reservar sesión</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 La Fuente de la Salud · Bilbao centro</p>
+        <div style="display:flex; gap:24px;">
+          <a href="#">Aviso legal</a>
+          <a href="#">Política de privacidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = '¡Mensaje enviado!';
+      btn.style.background = '#25D366';
+      setTimeout(() => {
+        btn.textContent = 'Enviar mensaje';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
