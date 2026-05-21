@@ -332,6 +332,7 @@
     .como-image img {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center top;
     }
 
     /* ── SOBRE MÍ ──────────────────────────────────────── */
@@ -352,6 +353,7 @@
       width: 100%;
       border-radius: var(--radius);
       object-fit: cover;
+      object-position: center top;
       height: 560px;
       display: block;
       box-shadow: var(--shadow-md);
@@ -650,22 +652,98 @@
     }
     .espacio-image img { width: 100%; height: 100%; object-fit: cover; }
 
+    /* ── HAMBURGER ──────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; z-index: 101;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--purple); border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* ── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 960px) {
+      #identificada, #servicios, #como-trabajo,
+      #sobre-mi, #espacio, #contacto { padding: 64px 0; }
+
       #hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-content { padding: 40px 0 0; }
-      .hero-image { height: 60vw; }
+      .hero-content { padding: 48px 32px 32px !important; }
+      .hero-image { height: 90vw; min-height: 380px; }
+      .hero-image img { object-position: center 15%; }
+      .hero-image::before { display: none; }
+      .hero-decor { display: none !important; }
+
       .cards-grid,
       .identificada-grid { grid-template-columns: 1fr; }
+
       .como-inner,
       .sobre-inner,
       .contacto-inner,
       .espacio-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .como-image,
+      .espacio-image { height: 56vw; min-height: 260px; }
+      .sobre-image-main { height: 56vw; min-height: 260px; }
+      .sobre-badge {
+        position: static;
+        display: inline-block;
+        margin-top: 16px;
+      }
+
       .footer-inner { grid-template-columns: 1fr; }
     }
+
     @media (max-width: 680px) {
-      .nav-links { display: none; }
+      #identificada, #servicios, #como-trabajo,
+      #sobre-mi, #espacio, #contacto { padding: 48px 0; }
+      footer { padding: 40px 0 24px; }
+
       .container { padding: 0 20px; }
+
+      .nav-hamburger { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: fixed; top: 72px; left: 0; right: 0;
+        background: rgba(250,245,246,0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--rose-lt);
+        padding: 8px 0 20px; z-index: 99;
+        box-shadow: 0 8px 24px rgba(107,63,160,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block; padding: 14px 24px; font-size: 16px;
+        border-bottom: 1px solid rgba(232,160,176,0.15);
+        color: var(--text);
+      }
+      .nav-links .nav-cta { padding: 16px 24px 0; }
+      .nav-links .nav-cta .btn { width: 100%; text-align: center; }
+
+      .hero-content { padding: 40px 20px 24px !important; }
+      .hero-image { height: 88vw; min-height: 340px; }
+      .hero-content h1 { font-size: 34px; }
+      .hero-buttons { flex-direction: column; }
+      .hero-buttons .btn { text-align: center; }
+
+      .section-label { font-size: 38px; }
+      .como-text h2 { font-size: 38px; }
+      .sobre-text h2 { font-size: 38px; }
+      .espacio-text h2 { font-size: 38px; }
+      .contacto-left h2 { font-size: 42px; }
+
+      .contact-form { padding: 24px 20px; }
+      .espacio-image { height: 60vw; }
+
+      .footer-inner { gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
     }
   </style>
 </head>
@@ -693,6 +771,9 @@
           <li><a href="#contacto">Contacto</a></li>
           <li class="nav-cta"><a href="#contacto" class="btn btn-primary">Reservar</a></li>
         </ul>
+        <button class="nav-hamburger" aria-label="Abrir menú" onclick="toggleMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -1025,6 +1106,18 @@
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    function toggleMenu(btn) {
+      btn.classList.toggle('open');
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+    // Cierra el menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-hamburger').classList.remove('open');
+        document.querySelector('.nav-links').classList.remove('open');
+      });
     });
 
     const observer = new IntersectionObserver((entries) => {
