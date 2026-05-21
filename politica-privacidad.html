@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad | La Fuente de la Salud</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream:    #FAF5F6;
+      --rose-lt:  #F2D4D7;
+      --rose-md:  #E8A0B0;
+      --mauve:    #9B72AA;
+      --purple:   #6B3FA0;
+      --taupe:    #7A6B72;
+      --white:    #FEFCFD;
+      --text:     #3A2E33;
+      --text-lt:  #6B5D63;
+      --font-title: 'Pinyon Script', cursive;
+      --font-body:  'Raleway', sans-serif;
+      --radius: 18px;
+      --shadow: 0 4px 32px rgba(107,63,160,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+
+    /* NAVBAR */
+    #navbar { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(250,245,246,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(232,160,176,0.25); transition: box-shadow .3s; }
+    #navbar.scrolled { box-shadow: 0 2px 24px rgba(107,63,160,0.08); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon { width: 44px; height: 44px; flex-shrink: 0; }
+    .nav-logo-text { font-family: var(--font-title); font-size: 26px; color: var(--purple); line-height: 1; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; letter-spacing: .04em; color: var(--taupe); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--purple); }
+    .nav-links .nav-cta .btn { padding: 10px 24px; font-size: 14px; }
+    .btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 15px; letter-spacing: .03em; padding: 14px 32px; border-radius: 100px; text-decoration: none; cursor: pointer; transition: all .25s; border: none; }
+    .btn-primary { background: var(--purple); color: #fff; }
+    .btn-primary:hover { background: #5a339a; transform: translateY(-2px); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 101; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--purple); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* PAGE HEADER */
+    #page-header { padding-top: 72px; background: linear-gradient(160deg, var(--rose-lt) 0%, var(--cream) 60%); text-align: center; padding-bottom: 64px; }
+    .page-header-inner { padding-top: 64px; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(107,63,160,0.1); color: var(--purple); font-size: 13px; font-weight: 600; letter-spacing: .06em; padding: 7px 18px; border-radius: 100px; margin-bottom: 20px; text-transform: uppercase; }
+    #page-header h1 { font-family: var(--font-title); font-size: clamp(38px, 5vw, 60px); color: var(--purple); font-weight: 400; line-height: 1.1; margin-bottom: 12px; }
+    #page-header p { font-size: 15px; color: var(--text-lt); }
+
+    /* LEGAL CONTENT */
+    #legal-content { padding: 80px 0 100px; }
+    .legal-body { max-width: 760px; margin: 0 auto; }
+    .legal-body h2 { font-family: var(--font-title); font-size: 32px; color: var(--purple); font-weight: 400; margin-top: 48px; margin-bottom: 14px; }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p { font-size: 15px; color: var(--text-lt); line-height: 1.85; margin-bottom: 14px; }
+    .legal-body ul { margin: 0 0 14px 20px; }
+    .legal-body ul li { font-size: 15px; color: var(--text-lt); line-height: 1.85; margin-bottom: 6px; }
+    .legal-body strong { color: var(--text); }
+    .legal-divider { border: none; border-top: 1px solid var(--rose-lt); margin: 40px 0; }
+    .completar { background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 13px; font-weight: 600; }
+    .rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .right-item { background: var(--white); border: 1.5px solid var(--rose-lt); border-radius: 10px; padding: 14px 18px; }
+    .right-item strong { display: block; color: var(--purple); font-size: 13px; letter-spacing: .03em; margin-bottom: 4px; }
+    .right-item p { font-size: 13.5px; margin: 0; }
+
+    /* FOOTER */
+    footer { background: var(--text); color: rgba(255,255,255,0.7); padding: 56px 0 32px; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand .nav-logo-text { color: #fff; font-size: 30px; display: block; margin-bottom: 12px; }
+    .footer-brand p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); }
+    .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--rose-md); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.35); }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--rose-md); }
+
+    @media (max-width: 680px) {
+      .container { padding: 0 20px; }
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none; flex-direction: column; gap: 0; position: fixed; top: 72px; left: 0; right: 0; background: rgba(250,245,246,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid var(--rose-lt); padding: 8px 0 20px; z-index: 99; box-shadow: 0 8px 24px rgba(107,63,160,0.08); }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 14px 24px; font-size: 16px; border-bottom: 1px solid rgba(232,160,176,0.15); color: var(--text); }
+      .nav-links .nav-cta { padding: 16px 24px 0; }
+      .nav-links .nav-cta .btn { width: 100%; text-align: center; }
+      .rights-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 10px; }
+      #legal-content { padding: 48px 0 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <svg class="nav-logo-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="21" stroke="#9B72AA" stroke-width="1.5" fill="rgba(242,212,215,0.3)"/>
+            <line x1="22" y1="34" x2="22" y2="18" stroke="#6B3FA0" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M22 26 C18 22 13 22 13 17 C18 17 22 22 22 26Z" fill="#9B72AA" opacity="0.9"/>
+            <path d="M22 23 C26 19 31 20 31 15 C26 15 22 19 22 23Z" fill="#6B3FA0" opacity="0.8"/>
+            <path d="M22 21 C22 16 19 12 22 10 C25 12 22 16 22 21Z" fill="#9B72AA" opacity="0.7"/>
+            <ellipse cx="22" cy="35.5" rx="2.5" ry="1.5" fill="#E8A0B0" opacity="0.6"/>
+          </svg>
+          <span class="nav-logo-text">La Fuente de la Salud</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="sobre-mi.html">Sobre mí</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+          <li class="nav-cta"><a href="index.html#contacto" class="btn btn-primary">Reservar</a></li>
+        </ul>
+        <button class="nav-hamburger" aria-label="Abrir menú" onclick="toggleMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="page-header">
+    <div class="container">
+      <div class="page-header-inner">
+        <div class="page-eyebrow">Legal</div>
+        <h1>Política de Privacidad</h1>
+        <p>Cómo tratamos los datos personales que nos facilitas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="legal-content">
+    <div class="container">
+      <div class="legal-body">
+
+        <h2>1. Responsable del tratamiento</h2>
+        <ul>
+          <li><strong>Identidad:</strong> Iratxe <span class="completar">[APELLIDOS]</span></li>
+          <li><strong>NIF:</strong> <span class="completar">[NIF]</span></li>
+          <li><strong>Domicilio:</strong> Plaza Venezuela nº1, 5 drch, dpto 7, Bilbao</li>
+          <li><strong>Email:</strong> Iratxe@lafuentedelasalud.com</li>
+          <li><strong>Teléfono:</strong> 641 336 977</li>
+        </ul>
+
+        <hr class="legal-divider" />
+
+        <h2>2. ¿Qué datos recogemos?</h2>
+        <p>A través del formulario de contacto del sitio web recogemos los siguientes datos personales:</p>
+        <ul>
+          <li>Nombre</li>
+          <li>Dirección de correo electrónico</li>
+          <li>El contenido del mensaje que nos envíes</li>
+        </ul>
+        <p>No recogemos datos especialmente sensibles, si bien el contenido de los mensajes puede referirse a cuestiones de salud. Te pedimos que solo compartas la información que consideres necesaria.</p>
+
+        <hr class="legal-divider" />
+
+        <h2>3. ¿Para qué usamos tus datos?</h2>
+        <ul>
+          <li>Responder a tu consulta o solicitud de información</li>
+          <li>Gestionar la reserva o concertación de una cita</li>
+          <li>Contactar contigo en relación con los servicios ofrecidos</li>
+        </ul>
+        <p>No utilizamos tus datos para envío de publicidad ni los cedemos a terceros sin tu consentimiento expreso.</p>
+
+        <hr class="legal-divider" />
+
+        <h2>4. Base jurídica del tratamiento</h2>
+        <p>El tratamiento de tus datos se basa en el <strong>consentimiento</strong> que nos otorgas al rellenar y enviar el formulario de contacto, de conformidad con el artículo 6.1.a) del Reglamento General de Protección de Datos (RGPD).</p>
+
+        <hr class="legal-divider" />
+
+        <h2>5. ¿Cuánto tiempo conservamos tus datos?</h2>
+        <p>Conservamos tus datos durante el tiempo necesario para atender tu consulta y, en caso de establecerse una relación profesional, durante el tiempo que dure dicha relación más el plazo legalmente exigido para cumplir con las obligaciones que pudieran derivarse.</p>
+
+        <hr class="legal-divider" />
+
+        <h2>6. ¿A quién cedemos tus datos?</h2>
+        <p>No cedemos tus datos personales a terceros, salvo obligación legal. El sitio web utiliza <strong>Google Fonts</strong> para la carga de tipografías, lo que puede implicar la transferencia de la dirección IP del usuario a servidores de Google en EEUU. Google actúa como encargado del tratamiento bajo las garantías del Marco de Privacidad de Datos UE-EEUU.</p>
+
+        <hr class="legal-divider" />
+
+        <h2>7. Tus derechos</h2>
+        <p>De acuerdo con el RGPD y la Ley Orgánica 3/2018 de Protección de Datos (LOPDGDD), puedes ejercer los siguientes derechos:</p>
+        <div class="rights-grid">
+          <div class="right-item">
+            <strong>Acceso</strong>
+            <p>Conocer qué datos tuyos tratamos.</p>
+          </div>
+          <div class="right-item">
+            <strong>Rectificación</strong>
+            <p>Corregir datos inexactos o incompletos.</p>
+          </div>
+          <div class="right-item">
+            <strong>Supresión</strong>
+            <p>Solicitar que eliminemos tus datos.</p>
+          </div>
+          <div class="right-item">
+            <strong>Oposición</strong>
+            <p>Oponerte a un tratamiento concreto.</p>
+          </div>
+          <div class="right-item">
+            <strong>Limitación</strong>
+            <p>Solicitar que restrinjamos el tratamiento.</p>
+          </div>
+          <div class="right-item">
+            <strong>Portabilidad</strong>
+            <p>Recibir tus datos en formato estructurado.</p>
+          </div>
+        </div>
+        <p>Para ejercer cualquiera de estos derechos, escríbenos a <strong>Iratxe@lafuentedelasalud.com</strong> indicando el derecho que deseas ejercer y adjuntando una copia de tu DNI o documento identificativo.</p>
+        <p>Si consideras que el tratamiento no es conforme a la normativa, puedes presentar una reclamación ante la <strong>Agencia Española de Protección de Datos</strong> (AEPD) en <a href="https://www.aepd.es" target="_blank" rel="noopener" style="color:var(--purple);">www.aepd.es</a>.</p>
+
+        <hr class="legal-divider" />
+        <p style="font-size:13px; color:var(--taupe);">Última actualización: mayo de 2025</p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="nav-logo-text" style="font-family:var(--font-title);">La Fuente de la Salud</span>
+          <p>Consulta presencial en Bilbao centro. Nutrición integrativa, masaje terapéutico y terapia energética para mujeres que quieren recuperar su equilibrio.</p>
+          <p style="margin-top:12px;">📍 Plaza Venezuela nº1, Bilbao &nbsp;·&nbsp; 📞 641 336 977</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="sobre-mi.html">Sobre mí</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="aviso-legal.html">Aviso legal</a></li>
+            <li><a href="politica-privacidad.html">Política de privacidad</a></li>
+            <li><a href="politica-cookies.html">Política de cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 La Fuente de la Salud · Bilbao centro</p>
+        <div style="display:flex; gap:24px;">
+          <a href="aviso-legal.html">Aviso legal</a>
+          <a href="politica-privacidad.html">Privacidad</a>
+          <a href="politica-cookies.html">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    function toggleMenu(btn) {
+      btn.classList.toggle('open');
+      document.querySelector('.nav-links').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-hamburger').classList.remove('open');
+        document.querySelector('.nav-links').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
