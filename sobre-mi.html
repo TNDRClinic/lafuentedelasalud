@@ -318,10 +318,11 @@
 
       #hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-content { padding: 48px 32px 32px; }
-      .hero-image { height: 56vw; min-height: 280px; }
+      .hero-image { height: auto; aspect-ratio: 3/4; }
+      .hero-image::before { display: none; }
 
       .historia-inner { grid-template-columns: 1fr; gap: 40px; }
-      .historia-image { height: 56vw; min-height: 260px; }
+      .historia-image { height: auto; aspect-ratio: 3/4; }
 
       .footer-inner { grid-template-columns: 1fr; }
     }
@@ -353,7 +354,7 @@
       .nav-links .nav-cta .btn { width: 100%; text-align: center; }
 
       .hero-content { padding: 40px 20px 24px; }
-      .hero-image { height: 68vw; }
+      .hero-image { height: auto; }
       .hero-content h1 { font-size: 38px; }
       .hero-name { font-size: 28px; }
 
