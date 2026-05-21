@@ -1044,10 +1044,14 @@
         </div>
         <div class="contact-form reveal reveal-delay-2">
           <h3>Escríbeme</h3>
-          <form onsubmit="handleForm(event)">
+          <form id="contact-form" onsubmit="handleForm(event)">
+            <input type="hidden" name="access_key" value="TU-CLAVE-WEB3FORMS-AQUI" />
+            <input type="hidden" name="subject" value="Nueva consulta desde lafuentedelasalud.com" />
+            <input type="hidden" name="from_name" value="La Fuente de la Salud — Web" />
+            <input type="checkbox" name="botcheck" style="display:none;" />
             <div class="form-group">
               <label for="nombre">Nombre</label>
-              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              <input type="text" id="nombre" name="name" placeholder="Tu nombre" required />
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -1055,9 +1059,10 @@
             </div>
             <div class="form-group">
               <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" placeholder="Cuéntame cómo puedo ayudarte..."></textarea>
+              <textarea id="mensaje" name="message" placeholder="Cuéntame cómo puedo ayudarte..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary form-submit">Enviar mensaje</button>
+            <button type="submit" class="btn btn-primary form-submit" id="submit-btn">Enviar mensaje</button>
+            <p id="form-result" style="display:none; margin-top:14px; font-size:14px; text-align:center; border-radius:10px; padding:12px 16px;"></p>
           </form>
         </div>
       </div>
@@ -1128,16 +1133,47 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    function handleForm(e) {
+    async function handleForm(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('button[type=submit]');
-      btn.textContent = '¡Mensaje enviado!';
-      btn.style.background = '#25D366';
-      setTimeout(() => {
+      const form = e.target;
+      const btn = document.getElementById('submit-btn');
+      const result = document.getElementById('form-result');
+
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+
+        if (res.ok && json.success) {
+          result.textContent = '✓ Mensaje enviado. Te respondo en breve.';
+          result.style.display = 'block';
+          result.style.background = 'rgba(37,211,102,0.1)';
+          result.style.color = '#1a7a40';
+          result.style.border = '1px solid rgba(37,211,102,0.3)';
+          form.reset();
+          btn.textContent = 'Enviar mensaje';
+          btn.disabled = false;
+        } else {
+          throw new Error(json.message || 'Error al enviar');
+        }
+      } catch (err) {
+        result.textContent = '✗ Ha habido un problema. Escríbeme directamente a Iratxe@lafuentedelasalud.com';
+        result.style.display = 'block';
+        result.style.background = 'rgba(220,53,69,0.08)';
+        result.style.color = '#842029';
+        result.style.border = '1px solid rgba(220,53,69,0.2)';
         btn.textContent = 'Enviar mensaje';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
+        btn.disabled = false;
+      }
     }
   </script>
 </body>
