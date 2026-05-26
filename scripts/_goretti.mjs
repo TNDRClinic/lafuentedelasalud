@@ -1,0 +1,205 @@
+const SUPABASE_URL = 'https://oczxcsymcqjvibjltfrw.supabase.co';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const RESEND_KEY   = process.env.RESEND_API_KEY;
+const EMAIL        = 'gorettisubinas@gmail.com';
+const PASSWORD     = 'AlumnoTNDR#2026';
+const ROLE_ID      = '36d48bae-4fec-4657-9c99-014ec4541981';
+const TIENDA_URL   = 'https://tienda.tndr.eu';
+
+const authHeaders = {
+  apikey: SUPABASE_KEY,
+  Authorization: `Bearer ${SUPABASE_KEY}`,
+  'Content-Type': 'application/json',
+};
+
+// 1. Crear usuario
+const createRes = await fetch(`${SUPABASE_URL}/auth/v1/admin/users`, {
+  method: 'POST',
+  headers: authHeaders,
+  body: JSON.stringify({ email: EMAIL, password: PASSWORD, email_confirm: true }),
+});
+
+let userId = null;
+if (createRes.status === 422) {
+  console.log('⏭️  Usuario ya existía:', EMAIL);
+} else if (!createRes.ok) {
+  console.error('❌ Error creando usuario:', await createRes.text());
+  process.exit(1);
+} else {
+  const data = await createRes.json();
+  userId = data.id;
+  console.log('✅ Usuario creado:', EMAIL, '–', userId);
+
+  // 2. Asignar rol
+  const roleRes = await fetch(`${SUPABASE_URL}/rest/v1/customer_role_assignments`, {
+    method: 'POST',
+    headers: { ...authHeaders, Prefer: 'return=minimal' },
+    body: JSON.stringify({ user_id: userId, role_id: ROLE_ID }),
+  });
+  if (!roleRes.ok && roleRes.status !== 409) {
+    console.error('❌ Error asignando rol:', await roleRes.text());
+    process.exit(1);
+  }
+  console.log('🏷️  Rol asignado');
+}
+
+// 3. Enviar email (siempre, incluso si ya existía)
+const html = `<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu espacio en la Tienda TNDR</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0; padding:0; background:#f0ebe0; font-family:'Poppins', Arial, sans-serif;">
+
+<div style="display:none; max-height:0; overflow:hidden; opacity:0;">
+Algo especial para quienes llevan años caminando junto a nosotros · Tienda TNDR
+</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0ebe0;">
+<tr><td align="center" style="padding:30px 12px;">
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px; width:100%; background:#ffffff; border-radius:20px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.07);">
+
+<tr><td style="background:#3d5c3a; padding:28px 30px 24px 30px;">
+  <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#a8c4a5; font-weight:600; margin-bottom:10px;">TNDR · Para nuestros alumnos</div>
+  <div style="font-size:28px; color:#ffffff; font-weight:800; line-height:1.25;">Algo especial<br>para ti.</div>
+</td></tr>
+
+<tr><td style="background:#e8e0d0; padding:12px 30px;">
+  <div style="font-size:13px; color:#3d5c3a; font-weight:600;">✦ &nbsp;Alumno/a TNDR · Acceso especial a la tienda</div>
+</td></tr>
+
+<tr><td style="padding:34px 30px 24px 30px; color:#2a3a28; font-size:16px; line-height:1.8;">
+  <p style="font-size:22px; font-weight:800; color:#3d5c3a; margin:0 0 20px 0; line-height:1.3;">Han pasado años.<br>Y aún seguís aquí.</p>
+  <p style="margin:0 0 18px 0;">Durante todo este tiempo, cientos de alumnos habéis formado parte de la metodología TNDR. Habéis aprendido, practicado y crecido junto a nosotros. Eso no se olvida.</p>
+  <p style="margin:0 0 18px 0;">Precisamente por eso, queremos empezar a <strong>devolveros parte de ese valor</strong>. Hemos creado un espacio propio para vosotros dentro de nuestra tienda online oficial, con condiciones pensadas específicamente para la familia TNDR.</p>
+</td></tr>
+
+<tr><td style="padding:0 30px 28px 30px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f0e8; border-radius:14px; border-left:4px solid #3d5c3a;">
+    <tr><td style="padding:24px 28px;">
+      <div style="font-size:11px; text-transform:uppercase; letter-spacing:1.5px; color:#3d5c3a; font-weight:700; margin-bottom:16px;">Tus datos de acceso</div>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td style="padding:8px 0; font-size:14px; color:#6b7a68; width:120px;">Email</td>
+          <td style="padding:8px 0; font-size:15px; color:#2a3a28; font-weight:600;">${EMAIL}</td>
+        </tr>
+        <tr><td colspan="2" style="border-top:1px solid #ddd5c5; padding:0;"></td></tr>
+        <tr>
+          <td style="padding:8px 0; font-size:14px; color:#6b7a68;">Contraseña</td>
+          <td style="padding:8px 0;">
+            <span style="background:#3d5c3a; color:#ffffff; font-size:14px; font-weight:700; padding:6px 14px; border-radius:6px; letter-spacing:0.3px;">${PASSWORD}</span>
+          </td>
+        </tr>
+      </table>
+      <div style="margin-top:14px; font-size:13px; color:#8a9a88;">Te recomendamos cambiar tu contraseña tras el primer acceso desde tu perfil.</div>
+    </td></tr>
+  </table>
+</td></tr>
+
+<tr><td style="padding:0 30px 28px 30px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f0e8; border-radius:14px;">
+    <tr><td style="padding:22px 24px;">
+      <div style="font-size:11px; font-weight:700; color:#3d5c3a; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:14px;">Tu cuenta Alumno TNDR incluye</div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding:7px 0; font-size:15px; color:#2a3a28;">🌿 &nbsp;<strong>15% de descuento permanente</strong> en fórmulas magistrales y productos TNDR</td></tr>
+        <tr><td style="padding:7px 0; font-size:15px; color:#2a3a28;">🔑 &nbsp;Perfil personal con <strong>historial de pedidos</strong></td></tr>
+        <tr><td style="padding:7px 0; font-size:15px; color:#2a3a28;">📦 &nbsp;Descuento aplicado <strong>automáticamente</strong>, sin códigos</td></tr>
+      </table>
+    </td></tr>
+  </table>
+</td></tr>
+
+<tr><td align="center" style="padding:0 30px 36px 30px;">
+  <a href="${TIENDA_URL}" style="background:#3d5c3a; color:#ffffff; text-decoration:none; font-weight:700; font-size:16px; padding:16px 40px; border-radius:999px; display:inline-block; letter-spacing:0.3px;">
+    Acceder a la Tienda TNDR →
+  </a>
+</td></tr>
+
+<tr><td style="padding:0 30px 30px 30px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fdf8ee; border-radius:14px; border:1px dashed #c8b87a;">
+    <tr><td style="padding:18px 22px; font-size:14px; color:#6b5a20; line-height:1.7;">
+      <strong>⚠️ Importante:</strong><br>
+      — Usa exactamente el email al que has recibido este correo para entrar.<br>
+      — Si tienes cualquier problema para acceder, escríbenos a <a href="mailto:tienda@tndr.eu" style="color:#3d5c3a; font-weight:600;">tienda@tndr.eu</a>
+    </td></tr>
+  </table>
+</td></tr>
+
+<tr><td style="padding:0 30px;"><div style="border-top:1px solid #e8e0d0;"></div></td></tr>
+
+<tr><td style="padding:28px 30px 10px 30px; color:#2a3a28; font-size:16px; line-height:1.8;">
+  <p style="font-size:18px; font-weight:800; color:#3d5c3a; margin:0 0 14px 0;">Y esto es solo el principio.</p>
+  <p style="margin:0 0 18px 0;">Estamos estructurando nuevas figuras dentro de TNDR para quienes quieran implicarse más profundamente en el proyecto. Cada una con sus propias ventajas, acceso prioritario y condiciones especiales:</p>
+</td></tr>
+
+<tr><td style="padding:0 30px 30px 30px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+    <tr><td style="background:#f5f0e8; border-radius:12px; padding:16px 20px;">
+      <div style="font-size:16px; font-weight:800; color:#3d5c3a;">🌿 Profesional TNDR</div>
+      <div style="font-size:13px; color:#6b7a68; margin-top:4px;">Para quienes ejercen la metodología en consulta o práctica profesional.</div>
+    </td></tr>
+    <tr><td style="height:8px;"></td></tr>
+    <tr><td style="background:#f5f0e8; border-radius:12px; padding:16px 20px;">
+      <div style="font-size:16px; font-weight:800; color:#3d5c3a;">🤝 Asociado TNDR</div>
+      <div style="font-size:13px; color:#6b7a68; margin-top:4px;">Para quienes quieren crecer junto al proyecto con implicación activa.</div>
+    </td></tr>
+    <tr><td style="height:8px;"></td></tr>
+    <tr><td style="background:#f5f0e8; border-radius:12px; padding:16px 20px;">
+      <div style="font-size:16px; font-weight:800; color:#3d5c3a;">🌀 Embajador TNDR</div>
+      <div style="font-size:13px; color:#6b7a68; margin-top:4px;">Para quienes difunden y representan los valores TNDR en su entorno.</div>
+    </td></tr>
+  </table>
+  <p style="margin:18px 0 0 0; font-size:14px; color:#8a9a88; line-height:1.7;">
+    Todavía estamos terminando de estructurar el sistema, pero si tienes interés en alguna de estas figuras, <strong style="color:#3d5c3a;">escríbenos directamente</strong> y te informamos en persona.
+  </p>
+</td></tr>
+
+<tr><td style="padding:0 30px 36px 30px;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#3d5c3a; border-radius:14px;">
+    <tr><td style="padding:20px 24px; font-size:15px; color:#d4e8d0; line-height:1.7; text-align:center;">
+      📲 &nbsp;<strong style="color:#ffffff;">¿Conoces a algún compañero/a de formación</strong> que ya no esté en los grupos?<br>
+      <span style="font-size:14px;">Comparte este mensaje para que también puedan estar atentos al correo.</span>
+    </td></tr>
+  </table>
+</td></tr>
+
+<tr><td style="padding:0 30px 36px 30px; border-top:1px solid #e8e0d0;">
+  <table cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;">
+    <tr><td>
+      <div style="font-size:15px; color:#2a3a28;">Un abrazo,</div>
+      <div style="font-size:19px; font-weight:800; color:#3d5c3a; margin-top:6px;">Héctor Martín Tío</div>
+      <div style="font-size:13px; color:#6b8a68; margin-top:2px;">Director de TNDR · Sistema Integrativo de Salud, Formación y Desarrollo</div>
+      <div style="margin-top:8px;"><a href="mailto:tienda@tndr.eu" style="color:#3d5c3a; font-size:13px; text-decoration:none; font-weight:600;">tienda@tndr.eu</a></div>
+    </td></tr>
+  </table>
+</td></tr>
+
+<tr><td align="center" style="background:#f0ebe0; padding:22px 24px; border-top:1px solid #ddd5c5;">
+  <div style="font-size:12px; color:#8a7a5a; line-height:1.6;">Recibes este email por haber sido alumno/a de formaciones TNDR.</div>
+</td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+
+const emailRes = await fetch('https://api.resend.com/emails', {
+  method: 'POST',
+  headers: { Authorization: `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    from: 'Tienda TNDR <tienda@tndr.eu>',
+    to: [EMAIL],
+    subject: 'Tu acceso a la Tienda TNDR ya está listo',
+    html,
+  }),
+});
+if (!emailRes.ok) {
+  console.error('❌ Error enviando email:', await emailRes.text());
+  process.exit(1);
+}
+console.log('📧 Email enviado a', EMAIL);
+console.log('\n✅ Goretti Subinas Arambarri – procesada correctamente.');
