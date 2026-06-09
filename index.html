@@ -1044,15 +1044,14 @@
               <input type="text" id="nombre" name="name" placeholder="Tu nombre" required />
             </div>
             <div class="form-group">
-              <label for="email">Email <span style="font-weight:400; opacity:.6;">(opcional)</span></label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" />
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
             </div>
             <div class="form-group">
               <label for="mensaje">Mensaje</label>
               <textarea id="mensaje" name="message" placeholder="Cuéntame cómo puedo ayudarte..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-whatsapp form-submit" id="submit-btn">Enviar por WhatsApp</button>
-            <p style="margin-top:10px; font-size:12.5px; text-align:center; opacity:.7;">Al enviar se abrirá WhatsApp con tu mensaje ya escrito para que llegue directamente a Iratxe.</p>
+            <button type="submit" class="btn btn-primary form-submit" id="submit-btn">Enviar mensaje</button>
             <p id="form-result" style="display:none; margin-top:14px; font-size:14px; text-align:center; border-radius:10px; padding:12px 16px;"></p>
           </form>
         </div>
@@ -1141,15 +1140,21 @@
       const email   = (document.getElementById('email').value   || '').trim();
       const mensaje = (document.getElementById('mensaje').value || '').trim();
 
-      let texto = '¡Hola Iratxe! Te escribo desde lafuentedelasalud.com\n\n';
-      texto += 'Nombre: ' + nombre + '\n';
-      if (email) texto += 'Email: ' + email + '\n';
-      texto += 'Mensaje: ' + (mensaje || '(sin mensaje)');
+      // Validación de respaldo (además del 'required' del navegador).
+      if (!nombre || !email || !mensaje) return;
+
+      // Mensaje limpio y ordenado para WhatsApp (admite *negrita* y saltos de línea).
+      const texto =
+        'Hola Iratxe 🌿\n' +
+        'Tienes una nueva consulta desde tu web *lafuentedelasalud.com*\n\n' +
+        '👤 *Nombre:* ' + nombre + '\n' +
+        '✉️ *Email:* ' + email + '\n\n' +
+        '📝 *Mensaje:*\n' + mensaje;
 
       const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
       window.open(url, '_blank', 'noopener');
 
-      result.textContent = '✓ Te abrimos WhatsApp con tu mensaje. Pulsa "Enviar" para que le llegue a Iratxe.';
+      result.textContent = '✓ ¡Gracias! Se ha abierto WhatsApp con tu mensaje listo. Solo pulsa "Enviar".';
       result.style.display = 'block';
       result.style.background = 'rgba(37,211,102,0.1)';
       result.style.color = '#1a7a40';
