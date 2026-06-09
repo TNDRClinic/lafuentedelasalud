@@ -1145,11 +1145,11 @@
 
       // Mensaje limpio y ordenado para WhatsApp (admite *negrita* y saltos de línea).
       const texto =
-        'Hola Iratxe 🌿\n' +
-        'Tienes una nueva consulta desde tu web *lafuentedelasalud.com*\n\n' +
-        '👤 *Nombre:* ' + nombre + '\n' +
-        '✉️ *Email:* ' + email + '\n\n' +
-        '📝 *Mensaje:*\n' + mensaje;
+        'Hola Iratxe,\n' +
+        'tienes una nueva consulta desde tu web *lafuentedelasalud.com*\n\n' +
+        '*Nombre:* ' + nombre + '\n' +
+        '*Email:* ' + email + '\n\n' +
+        '*Mensaje:*\n' + mensaje;
 
       const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
       window.open(url, '_blank', 'noopener');
