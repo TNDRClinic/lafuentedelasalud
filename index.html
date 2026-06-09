@@ -1039,23 +1039,20 @@
         <div class="contact-form reveal reveal-delay-2">
           <h3>Escríbeme</h3>
           <form id="contact-form" onsubmit="handleForm(event)">
-            <input type="hidden" name="access_key" value="TU-CLAVE-WEB3FORMS-AQUI" />
-            <input type="hidden" name="subject" value="Nueva consulta desde lafuentedelasalud.com" />
-            <input type="hidden" name="from_name" value="La Fuente de la Salud — Web" />
-            <input type="checkbox" name="botcheck" style="display:none;" />
             <div class="form-group">
               <label for="nombre">Nombre</label>
               <input type="text" id="nombre" name="name" placeholder="Tu nombre" required />
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+              <label for="email">Email <span style="font-weight:400; opacity:.6;">(opcional)</span></label>
+              <input type="email" id="email" name="email" placeholder="tu@email.com" />
             </div>
             <div class="form-group">
               <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="message" placeholder="Cuéntame cómo puedo ayudarte..."></textarea>
+              <textarea id="mensaje" name="message" placeholder="Cuéntame cómo puedo ayudarte..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary form-submit" id="submit-btn">Enviar mensaje</button>
+            <button type="submit" class="btn btn-whatsapp form-submit" id="submit-btn">Enviar por WhatsApp</button>
+            <p style="margin-top:10px; font-size:12.5px; text-align:center; opacity:.7;">Al enviar se abrirá WhatsApp con tu mensaje ya escrito para que llegue directamente a Iratxe.</p>
             <p id="form-result" style="display:none; margin-top:14px; font-size:14px; text-align:center; border-radius:10px; padding:12px 16px;"></p>
           </form>
         </div>
@@ -1127,47 +1124,37 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    async function handleForm(e) {
+    // Número de WhatsApp de Iratxe (formato internacional sin '+' ni espacios).
+    const WHATSAPP_NUMERO = '34641336977';
+
+    // El formulario de contacto NO envía email: compone el mensaje y abre
+    // WhatsApp (web/app) con el texto ya escrito hacia el número de Iratxe.
+    // Así el mensaje le llega directamente a su WhatsApp, sin servidor de
+    // correo ni servicios externos. El visitante solo tiene que pulsar "Enviar"
+    // en WhatsApp (y de paso Iratxe se queda con su número para responder).
+    function handleForm(e) {
       e.preventDefault();
       const form = e.target;
-      const btn = document.getElementById('submit-btn');
       const result = document.getElementById('form-result');
 
-      btn.textContent = 'Enviando...';
-      btn.disabled = true;
+      const nombre  = (document.getElementById('nombre').value  || '').trim();
+      const email   = (document.getElementById('email').value   || '').trim();
+      const mensaje = (document.getElementById('mensaje').value || '').trim();
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
+      let texto = '¡Hola Iratxe! Te escribo desde lafuentedelasalud.com\n\n';
+      texto += 'Nombre: ' + nombre + '\n';
+      if (email) texto += 'Email: ' + email + '\n';
+      texto += 'Mensaje: ' + (mensaje || '(sin mensaje)');
 
-      try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const json = await res.json();
+      const url = 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(texto);
+      window.open(url, '_blank', 'noopener');
 
-        if (res.ok && json.success) {
-          result.textContent = '✓ Mensaje enviado. Te respondo en breve.';
-          result.style.display = 'block';
-          result.style.background = 'rgba(37,211,102,0.1)';
-          result.style.color = '#1a7a40';
-          result.style.border = '1px solid rgba(37,211,102,0.3)';
-          form.reset();
-          btn.textContent = 'Enviar mensaje';
-          btn.disabled = false;
-        } else {
-          throw new Error(json.message || 'Error al enviar');
-        }
-      } catch (err) {
-        result.textContent = '✗ Ha habido un problema. Escríbeme directamente a Iratxe@lafuentedelasalud.com';
-        result.style.display = 'block';
-        result.style.background = 'rgba(220,53,69,0.08)';
-        result.style.color = '#842029';
-        result.style.border = '1px solid rgba(220,53,69,0.2)';
-        btn.textContent = 'Enviar mensaje';
-        btn.disabled = false;
-      }
+      result.textContent = '✓ Te abrimos WhatsApp con tu mensaje. Pulsa "Enviar" para que le llegue a Iratxe.';
+      result.style.display = 'block';
+      result.style.background = 'rgba(37,211,102,0.1)';
+      result.style.color = '#1a7a40';
+      result.style.border = '1px solid rgba(37,211,102,0.3)';
+      form.reset();
     }
   </script>
 </body>
