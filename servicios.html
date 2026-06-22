@@ -114,11 +114,12 @@
       text-transform: uppercase;
     }
     #page-header h1 {
-      font-family: var(--font-title);
-      font-size: clamp(42px, 5vw, 68px);
+      font-family: var(--font-body);
+      font-size: clamp(28px, 3.4vw, 40px);
       color: var(--purple);
-      font-weight: 400; line-height: 1.1;
+      font-weight: 700; line-height: 1.15;
       margin-bottom: 20px;
+      text-transform: uppercase; letter-spacing: 0.03em;
     }
     #page-header p {
       font-size: 18px; color: var(--text-lt);
@@ -133,20 +134,20 @@
     .service-section.bg-white { background: var(--white); }
     .service-section.bg-cream { background: var(--cream); }
     .service-section.bg-purple {
-      background: var(--purple);
+      background: linear-gradient(135deg, #F1EAF6 0%, var(--cream) 100%);
       position: relative; overflow: hidden;
     }
     .service-section.bg-purple::before {
       content: '';
       position: absolute; top: -60px; right: -60px;
       width: 400px; height: 400px; border-radius: 50%;
-      background: rgba(255,255,255,0.04);
+      background: rgba(122,92,143,0.05);
     }
     .service-section.bg-purple::after {
       content: '';
       position: absolute; bottom: -80px; left: -40px;
       width: 300px; height: 300px; border-radius: 50%;
-      background: rgba(255,255,255,0.03);
+      background: rgba(230,184,198,0.10);
     }
     .service-section.bg-rose {
       background: linear-gradient(135deg, var(--rose-lt) 0%, #E2D6E4 50%, var(--cream) 100%);
@@ -184,29 +185,29 @@
       text-transform: uppercase; margin-bottom: 20px;
     }
     .service-section.bg-purple .service-tag {
-      background: rgba(255,255,255,0.12); color: #fff;
+      background: var(--rose-lt); color: var(--purple);
     }
     .service-text h2 {
-      font-family: var(--font-title);
-      font-size: clamp(30px, 3vw, 44px);
-      font-weight: 400; line-height: 1.15;
+      font-family: var(--font-body);
+      font-size: clamp(24px, 2.6vw, 32px);
+      font-weight: 700; line-height: 1.25;
       margin-bottom: 20px;
       color: var(--purple);
     }
-    .service-section.bg-purple .service-text h2 { color: #fff; }
+    .service-section.bg-purple .service-text h2 { color: var(--purple); }
 
     .service-text .service-lead {
       font-size: 18px; font-style: italic;
       color: var(--purple); font-weight: 500;
       margin-top: -6px; margin-bottom: 26px;
     }
-    .service-section.bg-purple .service-text .service-lead { color: rgba(255,255,255,0.92); }
+    .service-section.bg-purple .service-text .service-lead { color: var(--purple); }
 
     .service-text p {
       font-size: 16px; color: var(--text-lt);
       line-height: 1.85; margin-bottom: 24px;
     }
-    .service-section.bg-purple .service-text p { color: rgba(255,255,255,0.82); }
+    .service-section.bg-purple .service-text p { color: var(--text-lt); }
 
     /* Symptom pills */
     .service-list-label {
@@ -214,7 +215,7 @@
       text-transform: uppercase; color: var(--taupe);
       margin-bottom: 12px; display: block;
     }
-    .service-section.bg-purple .service-list-label { color: rgba(255,255,255,0.5); }
+    .service-section.bg-purple .service-list-label { color: var(--taupe); }
 
     .symptom-pills {
       display: flex; flex-wrap: wrap; gap: 8px;
@@ -229,9 +230,9 @@
     }
     .service-section.bg-white .symptom-pill { background: var(--cream); }
     .service-section.bg-purple .symptom-pill {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.2);
-      color: #fff;
+      background: var(--white);
+      border-color: var(--rose-lt);
+      color: var(--purple);
     }
     .service-section.bg-rose .symptom-pill { background: var(--white); }
 
@@ -244,7 +245,7 @@
     }
     .service-section.bg-purple .service-pillar-dot { background: var(--rose-md); }
     .service-pillar p { font-size: 15px; color: var(--text-lt); line-height: 1.6; margin: 0; }
-    .service-section.bg-purple .service-pillar p { color: rgba(255,255,255,0.85); }
+    .service-section.bg-purple .service-pillar p { color: var(--text-lt); }
 
     /* Quote / frase final */
     .service-quote {
@@ -257,8 +258,8 @@
       font-size: 16px; color: var(--taupe);
       margin: 0; line-height: 1.7;
     }
-    .service-section.bg-purple .service-quote { border-left-color: rgba(255,255,255,0.3); }
-    .service-section.bg-purple .service-quote p { color: rgba(255,255,255,0.7); }
+    .service-section.bg-purple .service-quote { border-left-color: var(--rose-md); }
+    .service-section.bg-purple .service-quote p { color: var(--taupe); }
 
     /* Format badge (constelaciones) */
     .format-badge {
@@ -272,10 +273,10 @@
     .format-badge svg { flex-shrink: 0; }
     .format-badge p { font-size: 14px; font-weight: 500; color: var(--purple); margin: 0; line-height: 1.5; }
     .service-section.bg-purple .format-badge {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.15);
+      background: rgba(122,92,143,0.08);
+      border-color: rgba(122,92,143,0.15);
     }
-    .service-section.bg-purple .format-badge p { color: rgba(255,255,255,0.85); }
+    .service-section.bg-purple .format-badge p { color: var(--purple); }
 
     /* ── CTA FINAL ───────────────────────────────────────── */
     #cta-final {
@@ -292,10 +293,11 @@
       background: rgba(255,255,255,0.03);
     }
     #cta-final h2 {
-      font-family: var(--font-title);
-      font-size: clamp(36px, 4vw, 54px);
-      color: #fff; font-weight: 400;
+      font-family: var(--font-body);
+      font-size: clamp(26px, 3vw, 36px);
+      color: #fff; font-weight: 700;
       line-height: 1.2; margin-bottom: 20px;
+      text-transform: uppercase; letter-spacing: 0.03em;
     }
     #cta-final p {
       font-size: 17px; color: rgba(255,255,255,0.75);
@@ -552,13 +554,13 @@
 
           <div class="format-badge">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="3" width="16" height="15" rx="3" stroke="rgba(255,255,255,0.7)" stroke-width="1.4"/>
-              <path d="M6 1v4M14 1v4M2 8h16" stroke="rgba(255,255,255,0.7)" stroke-width="1.4" stroke-linecap="round"/>
+              <rect x="2" y="3" width="16" height="15" rx="3" stroke="var(--purple)" stroke-width="1.4"/>
+              <path d="M6 1v4M14 1v4M2 8h16" stroke="var(--purple)" stroke-width="1.4" stroke-linecap="round"/>
             </svg>
             <p>Talleres grupales una vez al mes<br/>Sesiones individuales disponibles</p>
           </div>
 
-          <a href="index.html#contacto" class="btn btn-outline-white">Quiero más información</a>
+          <a href="index.html#contacto" class="btn btn-outline">Quiero más información</a>
         </div>
 
         <div class="service-image reveal reveal-delay-2">
@@ -612,7 +614,7 @@
         <div class="footer-brand">
           <span class="nav-logo-text script">La Fuente de la Salud</span>
           <p>Consulta presencial en Bilbao centro. Nutrición integrativa, masaje terapéutico y terapia energética para mujeres que quieren recuperar su equilibrio.</p>
-          <p style="margin-top:12px;">📍 Plaza Venezuela nº1, Bilbao &nbsp;·&nbsp; 📞 641 336 977</p>
+          <p style="margin-top:12px;"><svg style="width:14px;height:14px;vertical-align:-2px;margin-right:5px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c3.8-4.3 5.7-7.5 5.7-10.1A5.7 5.7 0 1 0 6.3 10.9C6.3 13.5 8.2 16.7 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10.4" r="2.1" stroke="currentColor" stroke-width="1.6"/></svg>Plaza Venezuela nº1, Bilbao &nbsp;·&nbsp; <svg style="width:14px;height:14px;vertical-align:-2px;margin-right:5px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.8 4.5H9l1.3 3.6-1.9 1.3a10.5 10.5 0 0 0 4.7 4.7l1.3-1.9 3.6 1.3v2.2a2 2 0 0 1-2.2 2A14.5 14.5 0 0 1 4.8 6.7 2 2 0 0 1 6.8 4.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>641 336 977</p>
         </div>
         <div class="footer-col">
           <h4>Navegación</h4>
