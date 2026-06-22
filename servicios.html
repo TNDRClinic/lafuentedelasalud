@@ -13,23 +13,23 @@
   <style>
     /* ── TOKENS ─────────────────────────────────────────── */
     :root {
-      --cream:    #FAF5F6;
-      --rose-lt:  #F2D4D7;
-      --rose-md:  #E8A0B0;
-      --mauve:    #9B72AA;
-      --purple:   #6B3FA0;
-      --taupe:    #7A6B72;
+      --cream:    #FBF6F2;
+      --rose-lt:  #F2DCE3;
+      --rose-md:  #E6B8C6;
+      --mauve:    #AE9FC6;
+      --purple:   #7A5C8F;
+      --taupe:    #766F74;
       --white:    #FEFCFD;
-      --text:     #3A2E33;
-      --text-lt:  #6B5D63;
+      --text:     #463F43;
+      --text-lt:  #766F74;
 
       --font-title: 'Pinyon Script', cursive;
       --font-body:  'Raleway', sans-serif;
 
       --radius: 18px;
       --radius-sm: 10px;
-      --shadow: 0 4px 32px rgba(107,63,160,0.08);
-      --shadow-md: 0 8px 48px rgba(107,63,160,0.13);
+      --shadow: 0 4px 32px rgba(122,92,143,0.08);
+      --shadow-md: 0 8px 48px rgba(122,92,143,0.13);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -53,7 +53,7 @@
       border: none;
     }
     .btn-primary { background: var(--purple); color: #fff; }
-    .btn-primary:hover { background: #5a339a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,63,160,0.3); }
+    .btn-primary:hover { background: #674C7A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(122,92,143,0.3); }
     .btn-outline { background: transparent; color: var(--purple); border: 2px solid var(--purple); }
     .btn-outline:hover { background: var(--rose-lt); transform: translateY(-2px); }
     .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
@@ -64,12 +64,12 @@
     /* ── NAVBAR ─────────────────────────────────────────── */
     #navbar {
       position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(250,245,246,0.92);
+      background: rgba(251,246,242,0.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(232,160,176,0.25);
+      border-bottom: 1px solid rgba(230,184,198,0.25);
       transition: box-shadow .3s;
     }
-    #navbar.scrolled { box-shadow: 0 2px 24px rgba(107,63,160,0.08); }
+    #navbar.scrolled { box-shadow: 0 2px 24px rgba(122,92,143,0.08); }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
       height: 72px;
@@ -107,7 +107,7 @@
     }
     .page-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(107,63,160,0.1); color: var(--purple);
+      background: rgba(122,92,143,0.1); color: var(--purple);
       font-size: 13px; font-weight: 600; letter-spacing: .06em;
       padding: 7px 18px; border-radius: 100px;
       margin-bottom: 24px;
@@ -149,7 +149,7 @@
       background: rgba(255,255,255,0.03);
     }
     .service-section.bg-rose {
-      background: linear-gradient(135deg, var(--rose-lt) 0%, #EDD5E4 50%, var(--cream) 100%);
+      background: linear-gradient(135deg, var(--rose-lt) 0%, #E2D6E4 50%, var(--cream) 100%);
     }
 
     .service-inner {
@@ -194,6 +194,13 @@
       color: var(--purple);
     }
     .service-section.bg-purple .service-text h2 { color: #fff; }
+
+    .service-text .service-lead {
+      font-size: 18px; font-style: italic;
+      color: var(--purple); font-weight: 500;
+      margin-top: -6px; margin-bottom: 26px;
+    }
+    .service-section.bg-purple .service-text .service-lead { color: rgba(255,255,255,0.92); }
 
     .service-text p {
       font-size: 16px; color: var(--text-lt);
@@ -256,8 +263,8 @@
     /* Format badge (constelaciones) */
     .format-badge {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(107,63,160,0.08);
-      border: 1.5px solid rgba(107,63,160,0.15);
+      background: rgba(122,92,143,0.08);
+      border: 1.5px solid rgba(122,92,143,0.15);
       border-radius: var(--radius-sm);
       padding: 14px 20px;
       margin-bottom: 32px;
@@ -392,17 +399,17 @@
       .nav-links {
         display: none; flex-direction: column; gap: 0;
         position: fixed; top: 72px; left: 0; right: 0;
-        background: rgba(250,245,246,0.97);
+        background: rgba(251,246,242,0.97);
         backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--rose-lt);
         padding: 8px 0 20px; z-index: 99;
-        box-shadow: 0 8px 24px rgba(107,63,160,0.08);
+        box-shadow: 0 8px 24px rgba(122,92,143,0.08);
       }
       .nav-links.open { display: flex; }
       .nav-links li { width: 100%; }
       .nav-links a {
         display: block; padding: 14px 24px; font-size: 16px;
-        border-bottom: 1px solid rgba(232,160,176,0.15);
+        border-bottom: 1px solid rgba(230,184,198,0.15);
         color: var(--text);
       }
       .nav-links .nav-cta { padding: 16px 24px 0; }
@@ -459,11 +466,16 @@
       <div class="service-inner">
         <div class="service-text reveal">
           <span class="service-tag">Nutrición</span>
-          <h2>Alimentación emocional y sindrómica — Entender qué necesita realmente tu cuerpo</h2>
-          <p>No todos los cuerpos funcionan igual. Hay personas que sienten frío constantemente, otras retienen líquidos, otras viven con inflamación, cansancio o digestiones pesadas. Y muchas veces, aunque estemos intentando comer bien, seguimos sin sentirnos bien.</p>
-          <p>La alimentación sindrómica parte de una idea sencilla: cada cuerpo es único. No trabajo desde dietas rígidas ni normas iguales para todo el mundo.</p>
+          <h2>Nutrición emocional y alimentación sindrómica</h2>
+          <p class="service-lead">Porque no todos los cuerpos necesitan lo mismo.</p>
+          <p>Trabajo la nutrición desde dos miradas complementarias.</p>
+          <p>Por un lado, la <strong>nutrición emocional</strong>, donde exploramos la relación que tienes con la comida, tus hábitos, tus emociones y aquellos factores que pueden estar influyendo en tu forma de alimentarte.</p>
+          <p>Por otro, la <strong>alimentación sindrómica</strong>, una forma de entender que cada cuerpo es diferente y que no todos los alimentos sientan igual a todas las personas.</p>
+          <p>A través del estudio de tu cuadro sindrómico, podemos identificar qué alimentos pueden ayudarte más y cuáles podrían no estar favoreciendo tu bienestar en este momento.</p>
+          <p>No se trata de seguir dietas rígidas ni de contar calorías.</p>
+          <p>Se trata de comprender mejor tu cuerpo para aprender a alimentarlo de la forma que necesita.</p>
 
-          <span class="service-list-label">Síntomas que trabajamos</span>
+          <span class="service-list-label">¿Qué solemos observar?</span>
           <div class="symptom-pills">
             <span class="symptom-pill">Hinchazón</span>
             <span class="symptom-pill">Gases</span>
@@ -472,18 +484,18 @@
             <span class="symptom-pill">Estreñimiento</span>
             <span class="symptom-pill">Cansancio</span>
             <span class="symptom-pill">Inflamación</span>
-            <span class="symptom-pill">Relación emocional con la comida</span>
+            <span class="symptom-pill">Relación con la comida</span>
           </div>
 
           <div class="service-quote">
-            <p>"La digestión no debería notarse. Y muchas veces el cuerpo habla a través de ella."</p>
+            <p>"La alimentación es mucho más que lo que ponemos en el plato. También habla de cómo vivimos, sentimos y nos relacionamos con nosotros mismos."</p>
           </div>
 
           <a href="index.html#contacto" class="btn btn-primary">Quiero más información</a>
         </div>
 
         <div class="service-image reveal reveal-delay-2">
-          <img src="uploads/IMG-20231008-WA0050.jpg" alt="Nutrición emocional y alimentación sindrómica en Bilbao" />
+          <img src="uploads/consulta-iratxe.jpg" alt="Iratxe en su consulta de nutrición integrativa en Bilbao" />
         </div>
       </div>
     </div>
